@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+# NOTE: keep in sync with build/version.txt (build/wheels.py verifies this).
+version = "2.11.7"
+name = "caddyserver"
+description = "Caddy web server as platform-specific Python wheels — pip/pipx/uvx installable, offline, no first-run download"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Sushant Gautam" }]
+keywords = ["caddy", "webserver", "binary", "distribution", "http3", "https"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: System Administrators",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: Internet :: WWW/HTTP :: Servers",
+]
+
+[project.urls]
+Homepage = "https://github.com/SushantGautam/caddyserver"
+Repository = "https://github.com/SushantGautam/caddyserver"
+Issues = "https://github.com/SushantGautam/caddyserver/issues"
+
+[project.scripts]
+# Only `caddyserver`: a `caddy` entry point would clobber the real caddy
+# binary that ships in the wheel's .data/scripts/ and lands on PATH.
+caddyserver = "caddyserver.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/caddyserver"]
