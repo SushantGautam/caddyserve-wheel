@@ -7,7 +7,7 @@ Pure standard library. Flow:
      GitHub release.
   3. Download each platform archive, verify its SHA-256 (hard fail on mismatch).
   4. Emit one wheel per platform tag plus an sdist into dist/, and write
-     dist/release_manifest.json (upstream + wheel digests for release notes).
+     build/release_manifest.json (upstream + wheel digests for release notes).
 
 Usage:  python build/wheels.py
 Env:    CADDY_CHECKSUMS_URL override for testing (not used in CI).
@@ -251,7 +251,7 @@ def main() -> None:
         "upstream_digest": None,
     })
 
-    (DIST / "release_manifest.json").write_text(json.dumps(manifest, indent=2))
+    (REPO / "build" / "release_manifest.json").write_text(json.dumps(manifest, indent=2))
     print("== done")
     for m in manifest:
         print(f"  {m['file']}  sha256={m['sha256'][:16]}…  {m['size'] / 1e6:.1f} MB")

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render dist/NOTES.md (GitHub release body) from dist/release_manifest.json."""
+"""Render build/NOTES.md (GitHub release body) from build/release_manifest.json."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ def main() -> None:
     # NOTES.md goes to build/, NOT dist/: the PyPI publish step globs dist/*
     # and twine rejects non-package files.
     v = (REPO / "build" / "version.txt").read_text().strip()
-    manifest = json.loads((DIST / "release_manifest.json").read_text())
+    manifest = json.loads((REPO / "build" / "release_manifest.json").read_text())
 
     lines = [
         f"## caddyserver {v}",

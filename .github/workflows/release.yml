@@ -45,7 +45,7 @@ jobs:
         run: |
           python -c "
           import json, zipfile
-          for m in json.load(open('dist/release_manifest.json')):
+          for m in json.load(open('build/release_manifest.json')):
               if m['file'].endswith('.whl'):
                   with zipfile.ZipFile('dist/' + m['file']) as zf:
                       assert zf.testzip() is None
