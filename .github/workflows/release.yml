@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Caddy version to release (X.Y.Z), defaults to build/version.txt"
+        description: "Caddy version to release (X.Y.Z). Defaults to build/version.txt."
         required: false
 
 permissions:
@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  build-and-release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,31 +35,22 @@ jobs:
 
       - name: Check version consistency
         id: ver
-        run: |
-          V=$(tr -d '[:space:]' < build/version.txt)
-          grep -q "^version = \"$V\"$" pyproject.toml || { echo "FAIL: pyproject.toml version != build/version.txt ($V)"; exit 1; }
-          grep -q "__version__ = \"$V\"" src/caddyserver/__init__.py || { echo "FAIL: __init__.py __version__ != build/version.txt ($V)"; exit 1; }
-          if [[ "${GITHUB_EVENT_NAME}" == "push" && "${GITHUB_REF_NAME}" != "v$V" ]]; then
-            echo "FAIL: tag $GITHUB_REF_NAME does not match build/version.txt ($V)"; exit 1
-          fi
-          echo "version $V consistent"
-          echo "v=$V" >> "$GITHUB_OUTPUT"
+        run: python build/check_version.py --tag "${GITHUB_REF_NAME}"
 
       - name: Build wheels (downloads + verifies official Caddy release)
         run: python build/wheels.py
 
       - name: Verify wheels
         run: |
-          python - <<'EOF'
+          python -c "
           import json, zipfile
-          manifest = json.load(open("dist/release_manifest.json"))
-          for m in manifest:
-              if m["file"].endswith(".whl"):
-                  with zipfile.ZipFile(f"dist/{m['file']}") as zf:
+          for m in json.load(open('dist/release_manifest.json')):
+              if m['file'].endswith('.whl'):
+                  with zipfile.ZipFile('dist/' + m['file']) as zf:
                       assert zf.testzip() is None
-                  print("ok", m["file"])
-          print("all wheels valid")
-          EOF
+                  print('ok', m['file'])
+          print('all wheels valid')
+          "
 
       - uses: actions/upload-artifact@v4
         with:
@@ -68,32 +59,12 @@ jobs:
           retention-days: 90
 
       - name: Release notes from manifest
-        run: |
-          python - <<'EOF'
-          import json
-          v = open("build/version.txt").read().strip()
-          manifest = json.load(open("dist/release_manifest.json"))
-          lines = [
-              f"## caddyserver {v}",
-              "",
-              f"Caddy **v{v}** — official binaries, digest-verified against the upstream",
-              f"[caddyserver/caddy v{v} release](https://github.com/caddyserver/caddy/releases/tag/v{v}).",
-              "",
-              "| File | Wheel SHA-256 | Upstream asset | Upstream digest (SHA-512) |",
-              "|---|---|---|---|",
-          ]
-          for m in manifest:
-              lines.append(
-                  f"| {m['file']} | `{m['sha256']}` | {m['upstream_asset'] or '-'} | `{m['upstream_digest'] or '-'}` |"
-              )
-          open("dist/NOTES.md", "w").write("\n".join(lines) + "\n")
-          EOF
+        run: python build/make_notes.py
 
       - uses: softprops/action-gh-release@v2
         id: rel
         with:
           tag_name: "v${{ steps.ver.outputs.v }}"
-          name: "caddyserver v${{ steps.ver.outputs.v }}"
           generate_release_notes: false
           body_path: dist/NOTES.md
           files: |
@@ -101,4 +72,5 @@ jobs:
             dist/*.tar.gz
 
       - name: Show release URL
-        run: echo "Release: ${{ steps.rel.outputs.url }}"
+        run: |
+          echo "Release: ${{ steps.rel.outputs.url }}"

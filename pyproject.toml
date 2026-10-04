@@ -24,9 +24,9 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/SushantGautam/caddyserver"
-Repository = "https://github.com/SushantGautam/caddyserver"
-Issues = "https://github.com/SushantGautam/caddyserver/issues"
+Homepage = "https://github.com/SushantGautam/caddyserve-wheel"
+Repository = "https://github.com/SushantGautam/caddyserve-wheel"
+Issues = "https://github.com/SushantGautam/caddyserve-wheel/issues"
 
 [project.scripts]
 # Only `caddyserver`: a `caddy` entry point would clobber the real caddy

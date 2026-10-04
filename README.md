@@ -56,9 +56,15 @@ is a one-line change plus a tag, and the release pipeline builds, verifies, and
 publishes automatically.
 
 **If I am slow to pick up a new Caddy release, please
-[open an issue](https://github.com/SushantGautam/caddyserver/issues) — a nudge is
-all it takes and I will push a new version promptly.** Pull requests that bump
-`build/version.txt` are welcome too.
+[open an issue](https://github.com/SushantGautam/caddyserve-wheel/issues) — a
+nudge is all it takes and I will push a new version promptly.** Pull requests
+that bump `build/version.txt` are welcome too.
+
+### Handover
+
+This package name lives on PyPI as `caddyserver`. If the official Caddy team
+(Caddy Server Pty Ltd) ever wants to maintain it directly, I am happy to
+**hand over the PyPI project** — just get in touch via an issue.
 
 ## Verification
 
