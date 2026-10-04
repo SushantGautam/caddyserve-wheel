@@ -9,6 +9,10 @@ No mise, no Docker, no Homebrew, no first-run download — **works offline after
 > The official project lives at https://caddyserver.com and
 > https://github.com/caddyserver/caddy. The binaries in this package are the
 > official Caddy builds, redistributed as Python wheels for convenience.
+>
+> **Handover:** I am happy to **hand over the `caddyserver` PyPI project to the
+> official Caddy team** if they are interested in maintaining it — just reach
+> out via a [GitHub issue](https://github.com/SushantGautam/caddyserve-wheel/issues).
 
 | Platform | Binary |
 |---|---|
