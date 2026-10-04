@@ -12,14 +12,20 @@ and architecture automatically (Windows, macOS, Linux; x86-64 and ARM64).
 > **Handover:** happy to **hand over the `caddyserver` PyPI project to the
 > official Caddy team** if they want to maintain it — open an issue.
 
-## Quick start
+## Quick run (no install)
 
 ```console
-# one-shot, no install (uv):
 uvx caddyserver version
+uvx caddyserver file-server --listen :8080
+```
 
-# or install:
-pip install caddyserver
+`uvx caddyserver ...` runs Caddy directly — anything after `caddyserver` is
+passed straight to the Caddy CLI.
+
+## Install
+
+```console
+pip install caddyserver       # or: uv tool install caddyserver / pipx install caddyserver
 caddy version
 ```
 
@@ -46,15 +52,6 @@ when `bin/` is not on PATH: `uvx caddyserver version`.
 ```python
 from caddyserver import get_caddy_executable
 exe = get_caddy_executable()  # Path to the bundled caddy binary
-```
-
-## Install options
-
-```console
-uvx caddyserver <args>             # ad-hoc, no install
-uv tool install caddyserver        # persistent, on PATH
-pipx install caddyserver           # persistent, on PATH
-pip install caddyserver            # inside a project/venv
 ```
 
 The package **version mirrors the Caddy version**
