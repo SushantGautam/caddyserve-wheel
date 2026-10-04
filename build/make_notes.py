@@ -6,11 +6,14 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-DIST = Path(__file__).resolve().parent.parent / "dist"
+REPO = Path(__file__).resolve().parent.parent
+DIST = REPO / "dist"
 
 
 def main() -> None:
-    v = (DIST.parent / "build" / "version.txt").read_text().strip()
+    # NOTES.md goes to build/, NOT dist/: the PyPI publish step globs dist/*
+    # and twine rejects non-package files.
+    v = (REPO / "build" / "version.txt").read_text().strip()
     manifest = json.loads((DIST / "release_manifest.json").read_text())
 
     lines = [
@@ -27,8 +30,8 @@ def main() -> None:
             f"| {m['file']} | `{m['sha256']}` | {m['upstream_asset'] or '-'} | "
             f"`{m['upstream_digest'] or '-'}` |"
         )
-    (DIST / "NOTES.md").write_text("\n".join(lines) + "\n")
-    print("wrote dist/NOTES.md")
+    (REPO / "build" / "NOTES.md").write_text("\n".join(lines) + "\n")
+    print("wrote build/NOTES.md")
 
 
 if __name__ == "__main__":

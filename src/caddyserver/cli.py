@@ -36,6 +36,12 @@ def get_caddy_executable() -> Path:
     candidates.extend(pkg / p for p in (_BIN, "bin", "data/scripts"))
     candidates.extend(pkg.parent.parent / p for p in ("bin", _BIN))
 
+    # uv (uvx / `uv tool install`) keeps the archive under site-packages and
+    # leaves the .data tree in place instead of moving it to the scheme dir.
+    candidates.extend(
+        pkg.parent / p for p in (".data/scripts", "data/scripts")
+    )
+
     for c in candidates:
         c = c.resolve() if c.exists() else c
         if c.is_file():
