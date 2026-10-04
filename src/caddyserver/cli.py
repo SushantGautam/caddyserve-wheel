@@ -31,16 +31,18 @@ def get_caddy_executable() -> Path:
     candidates.append(Path(sys.executable).parent / _BIN)
 
     # Fallbacks: relative to this package (uninstalled tree, exotic layouts).
+    # `pkg` is the caddyserver package dir; `pkg.parent` is site-packages.
     pkg = Path(__file__).resolve().parent
-    candidates.extend(pkg.parent / p for p in (_BIN, "bin", "data/scripts"))
-    candidates.extend(pkg / p for p in (_BIN, "bin", "data/scripts"))
-    candidates.extend(pkg.parent.parent / p for p in ("bin", _BIN))
-
-    # uv (uvx / `uv tool install`) keeps the archive under site-packages and
-    # leaves the .data tree in place instead of moving it to the scheme dir.
-    candidates.extend(
-        pkg.parent / p for p in (".data/scripts", "data/scripts")
-    )
+    sp = pkg.parent
+    candidates += [
+        sp / _BIN,
+        pkg / _BIN,
+        # uv (uvx / `uv tool install`) leaves the .data tree under
+        # site-packages instead of moving it to the scheme scripts dir.
+        sp / ".data" / "scripts" / _BIN,
+        sp / "data" / "scripts" / _BIN,
+        pkg.parent.parent / "bin" / _BIN,
+    ]
 
     for c in candidates:
         c = c.resolve() if c.exists() else c
