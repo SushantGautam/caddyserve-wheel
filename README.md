@@ -14,15 +14,6 @@ No mise, no Docker, no Homebrew, no first-run download — **works offline after
 > official Caddy team** if they are interested in maintaining it — just reach
 > out via a [GitHub issue](https://github.com/SushantGautam/caddyserve-wheel/issues).
 
-| Platform | Binary |
-|---|---|
-| Windows (Intel/AMD) | `caddy.exe` |
-| Windows (ARM64) | `caddy.exe` |
-| macOS (Intel) | `caddy` |
-| macOS (Apple Silicon) | `caddy` |
-| Linux (x86-64, glibc or musl) | `caddy` |
-| Linux (ARM64, glibc or musl) | `caddy` |
-
 The package **version mirrors the Caddy version** (e.g. `caddyserver==2.11.7` bundles Caddy v2.11.7).
 
 ## Install
