@@ -11,6 +11,7 @@ Usage: python build/check_version.py [--tag <tag>]
 
 from __future__ import annotations
 
+import os
 import re
 import sys
 from pathlib import Path
@@ -41,6 +42,11 @@ def main() -> None:
 
     if tag is not None and tag != f"v{v_file}":
         sys.exit(f"FAIL: tag {tag} does not match build/version.txt ({v_file})")
+
+    # Expose the version to later workflow steps (e.g. the release tag name).
+    if (gh_output := os.environ.get("GITHUB_OUTPUT")):
+        with open(gh_output, "a") as f:
+            f.write(f"v={v_file}\n")
 
     print(f"version {v_file} consistent")
 
