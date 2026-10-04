@@ -43,8 +43,8 @@
   },
   {
     "file": "caddyserver-2.11.7.tar.gz",
-    "sha256": "4fe119b5d38b3a303dda6eca1c4507ab7905605ed215b0a426ca92275f3d4e32",
-    "size": 7718,
+    "sha256": "de49cd8febe7271e86d9abd074c54e02c6c610a32226b689d7c6de1530454659",
+    "size": 7960,
     "upstream_asset": null,
     "upstream_digest": null
   }

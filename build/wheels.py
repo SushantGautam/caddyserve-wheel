@@ -24,6 +24,7 @@ import re
 import shutil
 import sys
 import tarfile
+import time
 import urllib.request
 import zipfile
 from concurrent.futures import ThreadPoolExecutor
@@ -245,6 +246,11 @@ def main() -> None:
         ]:
             if f.exists():
                 tf.add(f, arcname=f"{DIST_NAME}-{version}/{f.name}", recursive=True)
+        # PEP 643 / PyPI requirement: sdist needs a PKG-INFO with Metadata-Version
+        info = tarfile.TarInfo(f"{DIST_NAME}-{version}/PKG-INFO")
+        info.size = len(metadata)
+        info.mtime = int(time.time())
+        tf.addfile(info, io.BytesIO(metadata))
     manifest.append({
         "file": sdist.name,
         "sha256": hashlib.sha256(sdist.read_bytes()).hexdigest(),
