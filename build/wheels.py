@@ -212,7 +212,7 @@ def main() -> None:
         "Classifier: Operating System :: MacOS :: MacOS X\n"
         "Classifier: Operating System :: POSIX :: Linux\n"
         "Classifier: Programming Language :: Python :: 3\n"
-        "Classifier: Topic :: Internet :: WWW/HTTP :: Servers\n"
+        "Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Server\n"
         "Description-Content-Type: text/markdown\n"
         # PEP 643: the description body is everything after the single blank
         # line that ends the header block (there is no "Description:" field).

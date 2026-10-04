@@ -1,50 +1,50 @@
 [
   {
     "file": "caddyserver-2.11.7-py3-none-win_amd64.whl",
-    "sha256": "5acf8103ed1d03cd81d379a32b81d97b895ae3f7c243d5de93d045438f12ab9a",
-    "size": 53167797,
+    "sha256": "d9600bf109e83ce773cbaccaa829eeeca7222e963c5fc1a0337b07e863163ba8",
+    "size": 53167804,
     "upstream_asset": "caddy_2.11.7_windows_amd64.zip",
     "upstream_digest": "c308154504e53755958ffc62d8a2657ab17eefd6dd25c45dbb2c3d93d29519971f77ca652f7d0f2bcb7f980b9ba3822478865e29969d0272d7613550a43152b1"
   },
   {
     "file": "caddyserver-2.11.7-py3-none-win_arm64.whl",
-    "sha256": "9168237df79714090d8e4c44c6312fac979e3a28a3249592d1939109c23ff40b",
-    "size": 48911029,
+    "sha256": "18c6052e2b0967c3fa2db407e1cdccc35efa1b523ecc1bab19ab545b97f6fa85",
+    "size": 48911036,
     "upstream_asset": "caddy_2.11.7_windows_arm64.zip",
     "upstream_digest": "5e232f5fd68968c288034d98f8b4a6b16f246da6d5f1d3a8c7543b83327f1de0bf5d01d627768fbfd1dd254d7d53eb94589a40b126c29def10ac01365a3fe982"
   },
   {
     "file": "caddyserver-2.11.7-py3-none-macosx_11_0_x86_64.whl",
-    "sha256": "4c1accec502459360254adfcc5135c3f418e1dadd88423373727010ccca46d70",
-    "size": 53464082,
+    "sha256": "17c74b7386fc0a5f749dce3d5b1acf672194104f971cdb17ef3a45d003360ae3",
+    "size": 53464089,
     "upstream_asset": "caddy_2.11.7_mac_amd64.tar.gz",
     "upstream_digest": "147886811fa2320a8881c6116dc8cc3f0562e2f686509ccc60f55cf85dfd5ea78e9f5f770c75da13bf124a2536b72e887b975fefd58706de3dafb57483610e70"
   },
   {
     "file": "caddyserver-2.11.7-py3-none-macosx_11_0_arm64.whl",
-    "sha256": "0619367f292344cd60fdcae78d7f3d9153aeaa349c9ce8840fa12a6f946c8408",
-    "size": 50202883,
+    "sha256": "0dc21608bb89b176866a23a8ea736699b2c93e9951a01c3a3de4eccb6bd02e0b",
+    "size": 50202890,
     "upstream_asset": "caddy_2.11.7_mac_arm64.tar.gz",
     "upstream_digest": "68f592df8f0ec058fbdb9b137b64e9a0aa792d28c06e1e3b9ec12d0e7fb371683a54e73ef6d8e6d0dd70dc6b941a5b5d5b73faedd3f89de119ad2eb78bdc668e"
   },
   {
     "file": "caddyserver-2.11.7-py3-none-manylinux2014_x86_64.musllinux_1_1_x86_64.whl",
-    "sha256": "0b4d2803c012f0c40f7a064ce325d0bfd96ba73f035c7f15d3a44de06bb9b941",
-    "size": 51961707,
+    "sha256": "0eb5a1e23ac5a9fdf17571996f967ff0cf7bbd4143d12ed78f2862a88293e9ed",
+    "size": 51961714,
     "upstream_asset": "caddy_2.11.7_linux_amd64.tar.gz",
     "upstream_digest": "a7a433a1b133efc3c8d10eb0b99d52a24b5ef5c322dc77f5282182b1c0402139ab83f3a99f0c52409df77d20123fb0b523edad8a66d8f5e49136197bf61ef0e7"
   },
   {
     "file": "caddyserver-2.11.7-py3-none-manylinux2014_aarch64.musllinux_1_1_aarch64.whl",
-    "sha256": "48a337e6e546687c57810f4bbffab91c698948df426beeff7294b55ca33e3e12",
-    "size": 48439149,
+    "sha256": "c74c1b9b8f392145568a6a4b17141946275bd14b0351e6f83aeab78ec79f25a8",
+    "size": 48439156,
     "upstream_asset": "caddy_2.11.7_linux_arm64.tar.gz",
     "upstream_digest": "3db36ba90c7a6e8dda40ee3dd71fa08844c76b5fb08f61b31e5e78d2ed38e71c51dc7baed875e50d1ca1279196e84302967237386ae87c91ae9f2aaceada682e"
   },
   {
     "file": "caddyserver-2.11.7.tar.gz",
-    "sha256": "de49cd8febe7271e86d9abd074c54e02c6c610a32226b689d7c6de1530454659",
-    "size": 7960,
+    "sha256": "bf66a5a2e4a8ca729e703a600f89ccddde43fe1a7616739850dea2e1506fe572",
+    "size": 7968,
     "upstream_asset": null,
     "upstream_digest": null
   }
