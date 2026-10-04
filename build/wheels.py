@@ -213,7 +213,9 @@ def main() -> None:
         "Classifier: Programming Language :: Python :: 3\n"
         "Classifier: Topic :: Internet :: WWW/HTTP :: Servers\n"
         "Description-Content-Type: text/markdown\n"
-        f"Description:\n{readme}\n"
+        # PEP 643: the description body is everything after the single blank
+        # line that ends the header block (there is no "Description:" field).
+        f"\n{readme}\n"
     ).encode()
 
     print("== building wheels")
